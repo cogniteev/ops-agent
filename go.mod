@@ -33,7 +33,7 @@ require (
 	google.golang.org/api v0.103.0
 	google.golang.org/genproto v0.0.0-20221117204609-8f9c96812029
 	google.golang.org/grpc v1.50.1
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.33.0
 	gopkg.in/yaml.v2 v2.4.0
 	gotest.tools/v3 v3.4.0
 )
