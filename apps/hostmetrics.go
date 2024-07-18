@@ -290,13 +290,23 @@ func (r MetricsReceiverHostmetrics) Pipelines(ctx context.Context) ([]otel.Recei
 			Config: map[string]interface{}{
 				"collection_interval": r.CollectionIntervalString(),
 				"scrapers": map[string]interface{}{
-					"cpu":        struct{}{},
-					"load":       struct{}{},
-					"memory":     struct{}{},
-					"disk":       struct{}{},
-					"filesystem": struct{}{},
-					"network":    struct{}{},
-					"paging":     struct{}{},
+					"cpu":    struct{}{},
+					"load":   struct{}{},
+					"memory": struct{}{},
+					"disk": map[string]interface{}{
+						"exclude": map[string]interface{}{
+							"devices":    []string{"^(/dev/)?loop[0-9]+$"},
+							"match_type": "regexp",
+						},
+					},
+					"filesystem": map[string]interface{}{
+						"exclude_devices": map[string]interface{}{
+							"devices":    []string{"^(/dev/)?loop[0-9]+$"},
+							"match_type": "regexp",
+						},
+					},
+					"network": struct{}{},
+					"paging":  struct{}{},
 					"process":    processConfig,
 					"processes":  struct{}{},
 				},
