@@ -504,8 +504,16 @@ receivers:
     collection_interval: 60s
     scrapers:
       cpu: {}
-      disk: {}
-      filesystem: {}
+      disk:
+        exclude:
+          devices:
+          - ^(/dev/)?loop[0-9]+$
+          match_type: regexp
+      filesystem:
+        exclude_devices:
+          devices:
+          - ^(/dev/)?loop[0-9]+$
+          match_type: regexp
       load: {}
       memory: {}
       network: {}
